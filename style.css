@@ -1,0 +1,240 @@
+:root {
+    --bg-dark: #0f131a;
+    --accent: #00ffaa;
+    /* Kód */
+    --color-graphic: #aa55ff;
+    /* Grafika */
+    --color-photo: #ffaa00;
+    /* Foto */
+    --card-bg: #161b22;
+    --font-main: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-dot: 'Rubik', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: white;
+    font-family: var(--font-main);
+    scroll-behavior: smooth;
+}
+
+.mono {
+    font-family: var(--font-mono);
+}
+
+/* Tečka jako text s fontem Rubik - hranatá a v řádku */
+.sq-dot {
+    font-family: var(--font-dot) !important;
+    font-weight: 800;
+    line-height: inherit;
+}
+
+/* Hero Background Glow */
+.hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 255, 170, 0.08) 0%, rgba(15, 19, 26, 0) 70%);
+    z-index: -1;
+}
+
+/* Portrait Container */
+.portrait-container {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* High-impact Brackets around Portrait */
+.html-bracket {
+    font-family: var(--font-mono);
+    font-size: 8rem;
+    font-weight: 200;
+    color: var(--accent);
+    opacity: 0.15;
+    line-height: 1;
+    user-select: none;
+    position: absolute;
+    transition: opacity 0.3s ease;
+}
+
+.bracket-left {
+    left: -40px;
+}
+
+.bracket-right {
+    right: -40px;
+}
+
+/* Bento & Project Cards */
+.bento-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.bento-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Filtry barevné */
+.filter-btn {
+    border: 1px solid transparent;
+    opacity: 0.5;
+}
+
+.filter-btn:hover {
+    opacity: 1;
+}
+
+.filter-btn[data-cat="all"].active {
+    background: white;
+    color: black;
+    opacity: 1;
+}
+
+.filter-btn[data-cat="code"].active {
+    background: var(--accent);
+    color: black;
+    opacity: 1;
+}
+
+.filter-btn[data-cat="graphic"].active {
+    background: var(--color-graphic);
+    color: black;
+    opacity: 1;
+}
+
+.filter-btn[data-cat="photo"].active {
+    background: var(--color-photo);
+    color: black;
+    opacity: 1;
+}
+
+/* Status pulsate animation */
+.status-pulse-group {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    animation: pulse-glow 2s infinite ease-in-out;
+    color: var(--accent);
+}
+
+@keyframes pulse-glow {
+    0% {
+        opacity: 1;
+        filter: drop-shadow(0 0 2px var(--accent));
+    }
+
+    50% {
+        opacity: 0.7;
+        filter: drop-shadow(0 0 12px var(--accent));
+    }
+
+    100% {
+        opacity: 1;
+        filter: drop-shadow(0 0 2px var(--accent));
+    }
+}
+
+.accent-text {
+    color: var(--accent);
+}
+
+/* Thumbnails logic */
+.project-img-container {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #0a0e14;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.project-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.bento-card:hover .project-img-container img {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+.grid-item {
+    transition: all 0.4s ease;
+}
+
+.hidden-item {
+    display: none;
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+/* Zwebíková Banner Styling */
+.zwebikova-banner {
+    background: rgba(0, 255, 170, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 12px 20px;
+    text-align: center;
+}
+
+/* Blog Section Styling */
+.blog-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.blog-row:hover {
+    background: rgba(255, 255, 255, 0.02);
+    padding-left: 8px;
+}
+
+/* Neutrální barva teček pro blog - odděleno od kategorií projektů */
+.blog-dot {
+    color: #4b5563;
+    /* Středně šedá */
+}
+
+.blog-row:hover .blog-dot {
+    color: #9ca3af;
+    /* Světlejší šedá při hoveru */
+}
+
+@media (max-width: 768px) {
+    .html-bracket {
+        font-size: 5rem;
+    }
+
+    .bracket-left {
+        left: -10px;
+    }
+
+    .bracket-right {
+        right: -10px;
+    }
+}
+
+/* Reveal on Scroll Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}

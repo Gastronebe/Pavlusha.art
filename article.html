@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pavlusha.art | Článek</title>
+
+    <meta name="description" content="Článek z blogu Zápisky z úlu na Pavlusha.art.">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Článek | Pavlusha.art">
+    <meta property="og:description" content="Čtení o webovém vývoji a tvoření.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;800&family=Rubik:wght@800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        .article-content h1,
+        .article-content h2,
+        .article-content h3 {
+            font-weight: bold;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .article-content h1 {
+            font-size: 2.25rem;
+        }
+
+        .article-content h2 {
+            font-size: 1.875rem;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: #d1d5db;
+            /* gray-300 */
+        }
+
+        .article-content a {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        .article-content ul,
+        .article-content ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            list-style: disc;
+            color: #d1d5db;
+        }
+    </style>
+</head>
+
+<body class="pt-8 min-h-screen flex flex-col">
+
+    <nav class="border-b border-white/10 p-4 mb-12">
+        <div class="max-w-3xl mx-auto flex justify-between items-center">
+            <a href="/"
+                class="text-xl font-bold uppercase tracking-wider hover:text-[var(--accent)] transition-colors">Pavlusha<span
+                    class="accent-text sq-dot">.</span>art</a>
+            <a href="blog.html" class="text-xs mono hover:text-[var(--accent)] transition-colors">&larr; Zpět na
+                články</a>
+        </div>
+    </nav>
+
+    <main class="max-w-3xl mx-auto px-8 flex-grow w-full">
+        <article id="article-container">
+            <p class="text-[10px] mono text-gray-500 py-4">Načítám zápisek...</p>
+        </article>
+    </main>
+
+    <footer
+        class="max-w-7xl mx-auto px-8 py-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs opacity-40 font-medium tracking-widest uppercase mono mt-20">
+        <div>NAVRHL A NAKÓDOVAL PAVLUSHA</div>
+        <div class="mt-4 md:mt-0">© 2026 PAVLUSHA.ART — VŠECHNA PRÁVA VYHRAZENA</div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="module" src="./src/article.js"></script>
+</body>
+
+</html>

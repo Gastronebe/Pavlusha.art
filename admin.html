@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pavlusha.art | Administrace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;800&family=Rubik:wght@800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        .admin-bg {
+            background-color: #12161d;
+        }
+
+        .form-input {
+            width: 100%;
+            background: #1a1f28;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: var(--font-main);
+            margin-bottom: 16px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            border-bottom: 2px solid transparent;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            border-color: var(--accent);
+            color: white;
+            font-weight: bold;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="admin-bg min-h-screen">
+
+    <nav class="border-b border-white/10 p-4">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold uppercase tracking-wider">Úl Admin<span class="accent-text sq-dot">.</span>
+            </h1>
+            <div class="flex items-center gap-4">
+                <span id="user-email" class="text-xs text-gray-400 mono hidden"></span>
+                <button id="logout-btn" class="text-xs text-red-400 mono hover:text-red-300 hidden">Odhlásit</button>
+                <a href="/" class="text-xs mono hover:text-[var(--accent)] transition-colors">&larr; Zpět na web</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Panel -->
+    <div id="login-panel" class="max-w-md mx-auto p-8 mt-20 text-center bento-card rounded-xl">
+        <h2 class="text-2xl font-bold mb-4">Přístup odepřen</h2>
+        <p class="text-gray-400 text-sm mb-6">Pro administraci webu se přihlaste povoleným Google účtem.</p>
+        <button id="login-btn"
+            class="accent-bg text-black font-bold uppercase tracking-widest text-sm px-6 py-3 rounded-lg hover:opacity-90 transition-all bg-[#00ffaa] w-full">
+            Přihlásit se přes Google
+        </button>
+    </div>
+
+    <main id="admin-panel" class="max-w-4xl mx-auto p-8 mt-4 hidden">
+        <!-- Tabs -->
+        <div class="flex gap-4 border-b border-white/10 mb-8 mono uppercase text-sm tracking-widest">
+            <button class="tab-btn active" data-tab="tab-project">Přidat Projekt</button>
+            <button class="tab-btn" data-tab="tab-article">Přidat Článek</button>
+            <button class="tab-btn" data-tab="tab-testimonials">Hodnocení</button>
+            <button class="tab-btn" data-tab="tab-messages">Zprávy</button>
+        </div>
+
+        <!-- Formulář: Portfoliové Reference -->
+        <div id="tab-project" class="tab-content active bento-card p-6 rounded-xl">
+            <h2 class="text-2xl font-bold mb-6">Nová reference</h2>
+            <form id="project-form">
+                <input type="hidden" id="p-id">
+                <label class="block text-xs uppercase mono text-gray-400 mb-2">Název</label>
+                <input type="text" id="p-title" class="form-input" placeholder="Př. Urban Identity" required>
+
+                <label class="block text-xs uppercase mono text-gray-400 mb-2">Popis</label>
+                <textarea id="p-desc" class="form-input h-24" placeholder="Vizuální styl pro..." required></textarea>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs uppercase mono text-gray-400 mb-2">Kategorie</label>
+                        <select id="p-category" class="form-input" required>
+                            <option value="code">Kód</option>
+                            <option value="graphic">Grafika</option>
+                            <option value="photo">Foto</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase mono text-gray-400 mb-2">Obrázek (Obálka)</label>
+                        <input type="file" id="p-image" accept="image/*" class="form-input text-sm">
+                    </div>
+                </div>
+
+                <div id="p-url-group" class="mb-4">
+                    <label class="block text-xs uppercase mono text-gray-400 mb-2">Odkaz / GitHub (pouze pro
+                        Kód)</label>
+                    <input type="text" id="p-linkUrl" class="form-input text-sm"
+                        placeholder="např. https://github.com/pavlusha/...">
+                </div>
+
+                <button type="submit" id="p-submit-btn"
+                    class="mt-4 accent-bg text-black font-bold uppercase tracking-widest text-sm px-6 py-3 rounded-lg hover:opacity-90 transition-all bg-[#00ffaa]">
+                    Uložit referenci
+                </button>
+                <button type="button" id="p-cancel-btn"
+                    class="mt-4 ml-2 border border-white/20 text-white font-bold uppercase tracking-widest text-sm px-6 py-3 rounded-lg hover:bg-white/10 transition-all hidden">
+                    Zrušit úpravu
+                </button>
+                <p id="p-msg" class="text-sm mt-4 text-green-400 hidden">Reference uložena.</p>
+            </form>
+
+            <div class="mt-12 pt-8 border-t border-white/10">
+                <h3 class="text-xl font-bold mb-4">Zpětná editace referencí</h3>
+                <div id="p-list" class="space-y-2">
+                    <p class="text-[10px] mono text-gray-500 py-2">Načítám reference...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulář: Články -->
+        <div id="tab-article" class="tab-content bento-card p-6 rounded-xl">
+            <h2 class="text-2xl font-bold mb-6">Nový článek</h2>
+            <form id="article-form">
+                <input type="hidden" id="a-id">
+                <label class="block text-xs uppercase mono text-gray-400 mb-2">Titulek</label>
+                <input type="text" id="a-title" class="form-input" placeholder="Př. Jak implementovat AI..." required>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div>
+                        <label class="block text-xs uppercase mono text-gray-400 mb-2">Kategorie</label>
+                        <select id="a-category" class="form-input" required>
+                            <option value="code">Kód & Vývoj</option>
+                            <option value="design">Design & UI/UX</option>
+                            <option value="life">Život & Úvahy</option>
+                            <option value="other">Ostatní</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase mono text-gray-400 mb-2">Doba čtení (v min.)</label>
+                        <input type="number" id="a-readTime" class="form-input" placeholder="8" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase mono text-gray-400 mb-2">Datum</label>
+                        <input type="text" id="a-date" class="form-input" placeholder="03 / 2026" required>
+                    </div>
+                </div>
+
+                <label class="block text-xs uppercase mono text-gray-400 mb-2">Obsah článku (Markdown/HTML)</label>
+                <textarea id="a-content" class="form-input h-64 font-mono text-sm leading-relaxed"
+                    placeholder="# Zde napište text článku..." required></textarea>
+
+                <button type="submit" id="a-submit-btn"
+                    class="mt-4 accent-bg text-black font-bold uppercase tracking-widest text-sm px-6 py-3 rounded-lg hover:opacity-90 transition-all bg-[#00ffaa]">
+                    Uložit článek
+                </button>
+                <button type="button" id="a-cancel-btn"
+                    class="mt-4 ml-2 border border-white/20 text-white font-bold uppercase tracking-widest text-sm px-6 py-3 rounded-lg hover:bg-white/10 transition-all hidden">
+                    Zrušit úpravu
+                </button>
+                <p id="a-msg" class="text-sm mt-4 text-green-400 hidden">Článek uložen.</p>
+            </form>
+
+            <div class="mt-12 pt-8 border-t border-white/10">
+                <h3 class="text-xl font-bold mb-4">Zpětná editace článků</h3>
+                <div id="a-list" class="space-y-2">
+                    <p class="text-[10px] mono text-gray-500 py-2">Načítám články...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulář: Hodnocení (Testimonials) -->
+        <div id="tab-testimonials" class="tab-content bento-card p-6 rounded-xl">
+            <h2 class="text-2xl font-bold mb-6">Nové hodnocení</h2>
+            <form id="testimonial-form">
+                <input type="hidden" id="t-id">
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs uppercase mono text-gray-400 mb-2">Jméno a příjmení</label>
+                        <input type="text" id="t-name" class="form-input" placeholder="Př. Jan Novák" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase mono text-gray-400 mb-2">Pozice / Firma</label>
+                        <input type="text" id="t-role" class="form-input" placeholder="Př. CEO, Firma s.r.o." required>
+                    </div>
+                </div>
+
+                <label class="block text-xs uppercase mono text-gray-400 mb-2">Text hodnocení</label>
+                <textarea id="t-text" class="form-input h-32" placeholder="Skvělá spolupráce..." required></textarea>
+
+                <button type="submit" id="t-submit-btn"
+                    class="mt-4 accent-bg text-black font-bold uppercase tracking-widest text-sm px-6 py-3 rounded-lg hover:opacity-90 transition-all bg-[#00ffaa]">
+                    Uložit hodnocení
+                </button>
+                <button type="button" id="t-cancel-btn"
+                    class="mt-4 ml-2 border border-white/20 text-white font-bold uppercase tracking-widest text-sm px-6 py-3 rounded-lg hover:bg-white/10 transition-all hidden">
+                    Zrušit úpravu
+                </button>
+                <p id="t-msg" class="text-sm mt-4 text-green-400 hidden">Hodnocení uloženo.</p>
+            </form>
+
+            <div class="mt-12 pt-8 border-t border-white/10">
+                <h3 class="text-xl font-bold mb-4">Zpětná editace hodnocení</h3>
+                <div id="t-list" class="space-y-2">
+                    <p class="text-[10px] mono text-gray-500 py-2">Načítám hodnocení...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Zprávy z formuláře -->
+        <div id="tab-messages" class="tab-content bento-card p-6 rounded-xl">
+            <h2 class="text-2xl font-bold mb-6">Příchozí zprávy</h2>
+            <div id="m-list" class="space-y-4">
+                <p class="text-[10px] mono text-gray-500 py-2">Načítám zprávy...</p>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="./src/admin.js"></script>
+</body>
+
+</html>

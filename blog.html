@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pavlusha.art | Zápisky z úlu (Blog)</title>
+
+    <meta name="description"
+        content="Zápisky z úlu. Všechny moje texty, názory, postřehy a návody pohromadě. Články o programování a designu.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Zápisky z úlu | Pavlusha.art">
+    <meta property="og:description" content="Čtení o webovém vývoji, logice, UI designu a radostech z tvoření.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;800&family=Rubik:wght@800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body class="pt-8 min-h-screen flex flex-col">
+
+    <nav class="border-b border-white/10 p-4 mb-12">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <a href="/"
+                class="text-xl font-bold uppercase tracking-wider hover:text-[var(--accent)] transition-colors">Pavlusha<span
+                    class="accent-text sq-dot">.</span>art</a>
+            <a href="/" class="text-xs mono hover:text-[var(--accent)] transition-colors">&larr; Zpět na portfolio</a>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-8 flex-grow w-full">
+        <div class="mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 leading-tight">Zápisky z úlu<span
+                    class="accent-text sq-dot">.</span></h1>
+            <p class="text-gray-500 text-sm mono uppercase tracking-widest">Všechny moje texty, názory a postřehy
+                pohromadě.</p>
+        </div>
+
+        <div id="blog-container" class="flex flex-col">
+            <!-- Články se dynamicky načítají z Firebase -->
+            <p class="text-[10px] mono text-gray-500 py-4">Načítám články z databáze...</p>
+        </div>
+    </main>
+
+    <footer
+        class="max-w-7xl mx-auto px-8 py-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs opacity-40 font-medium tracking-widest uppercase mono mt-20">
+        <div>NAVRHL A NAKÓDOVAL PAVLUSHA</div>
+        <div class="mt-4 md:mt-0">© 2026 PAVLUSHA.ART — VŠECHNA PRÁVA VYHRAZENA</div>
+    </footer>
+
+    <script type="module" src="./src/blog.js"></script>
+</body>
+
+</html>

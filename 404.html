@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stovka, dvě kila... 404! Ztracená včela | Pavlusha.art</title>
+
+    <meta name="description" content="Stránka nenalezena. Tady žádný nektar není.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;800&family=Rubik:wght@800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        .err-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Jednoduchá animace letící včely/bodu */
+        .lost-bee {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--accent);
+            animation: fly 15s infinite ease-in-out alternate;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translate(-50vw, 20vh);
+            }
+
+            25% {
+                transform: translate(-20vw, -10vh);
+            }
+
+            50% {
+                transform: translate(10vw, 30vh);
+            }
+
+            75% {
+                transform: translate(30vw, -20vh);
+            }
+
+            100% {
+                transform: translate(50vw, 10vh);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white">
+
+    <div class="err-container">
+        <div class="lost-bee"></div>
+        <div class="lost-bee"
+            style="animation-delay: -5s; animation-duration: 20s; opacity: 0.5; width: 5px; height: 5px;"></div>
+
+        <h1 class="text-9xl font-extrabold tracking-tighter mono mb-4 opacity-10">404</h1>
+
+        <div class="relative z-10 max-w-lg mx-auto">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6">Tady žádný nektar nenajdete<span
+                    class="accent-text sq-dot">.</span></h2>
+            <p class="text-gray-400 text-lg mb-10 font-light leading-relaxed">
+                Stránka, kterou hledáte, se v úlu nenachází. Buď vůbec neexistovala, nebo někam odletěla a ztratila
+                spojení se základnou.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/"
+                    class="accent-bg text-black px-8 py-4 rounded-md font-bold hover:opacity-90 transition-all bg-[#00ffaa] uppercase tracking-widest text-xs inline-block">
+                    Zpět do úlu
+                </a>
+                <a href="/blog.html"
+                    class="border border-white/20 text-white px-8 py-4 rounded-md font-bold hover:bg-white/10 transition-all uppercase tracking-widest text-xs inline-block">
+                    Číst zápisky
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
