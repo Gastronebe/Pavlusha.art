@@ -66,6 +66,12 @@ export function filterWork(category) {
 import { db } from './firebase.js';
 import { collection, getDocs, orderBy, query, addDoc } from 'firebase/firestore';
 
+// Vercel Web Analytics
+import { inject } from '@vercel/analytics';
+
+// Inject Vercel Analytics
+inject();
+
 window.addEventListener('DOMContentLoaded', () => {
     // Načteme data hned po startu
     loadProjects();
