@@ -1,6 +1,12 @@
 import { db } from './firebase.js';
 import { doc, getDoc } from 'firebase/firestore';
 
+// Vercel Web Analytics
+import { inject } from '@vercel/analytics';
+
+// Inject Vercel Analytics
+inject();
+
 window.addEventListener('DOMContentLoaded', async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');

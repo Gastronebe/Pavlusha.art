@@ -1,6 +1,12 @@
 import { db, auth, provider } from './firebase.js';
 import { collection, addDoc, updateDoc, doc, getDocs, deleteDoc, query, orderBy } from 'firebase/firestore';
 import { signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
+
+// Vercel Web Analytics
+import { inject } from '@vercel/analytics';
+
+// Inject Vercel Analytics
+inject();
 const ALLOWED_EMAIL = 'vyhlidkavseruby@gmail.com';
 
 // Auth State Observer

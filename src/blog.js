@@ -1,6 +1,12 @@
 import { db } from './firebase.js';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 
+// Vercel Web Analytics
+import { inject } from '@vercel/analytics';
+
+// Inject Vercel Analytics
+inject();
+
 window.addEventListener('DOMContentLoaded', async () => {
     try {
         const q = query(collection(db, "articles"), orderBy("createdAt", "desc"));
